@@ -1,0 +1,273 @@
+﻿<Window x:Class="Vif.MainWindow" Title="Vif"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vif"
+        mc:Ignorable="d"
+        WindowStyle="None" AllowsTransparency="True" ResizeMode="CanResizeWithGrip"
+        Height="300" Width="300" MinHeight="210" MinWidth="210">
+
+    <Window.Icon>
+        <ImageSource>S:/Projects/Vif/media/vif.ico</ImageSource>
+    </Window.Icon>
+
+    <Window.Background>
+        <SolidColorBrush x:Name="BackgroundBrush" Color="White" Opacity="0.5"/>
+    </Window.Background>
+
+    <Window.Resources>
+
+        <Style x:Key="TextStyle" TargetType="TextBlock">
+
+            <Setter Property="Foreground" Value="#000000"/>
+            <Setter Property="Background" Value="AntiqueWhite"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="FontFamily" Value="Consolas"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="TextAlignment" Value="Center"/>
+            <Setter Property="TextWrapping" Value="Wrap"/>
+            <Setter Property="Padding" Value="4"/>
+            <Setter Property="MinWidth" Value="30"/>
+
+        </Style>
+
+        <Style x:Key="ButtonStyle" TargetType="Button">
+
+            <Setter Property="Margin" Value="0 5 0 5"/>
+
+            <Setter Property="Effect">
+                <Setter.Value>
+                    <DropShadowEffect ShadowDepth="2" 
+                          BlurRadius="2" Direction="290"
+                          Color="#00FF99" Opacity="0.8"/>
+                </Setter.Value>
+            </Setter>
+
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="True">
+                    <Setter Property="Cursor" Value="Hand" />
+                </Trigger>
+            </Style.Triggers>
+
+        </Style>
+
+    </Window.Resources>
+
+    <Grid>
+
+        <Image x:Name="CurrentImage" Visibility="Collapsed"/>
+
+        <StackPanel x:Name="Controls">
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <Button x:Name="DirectoryButton" Style="{StaticResource ButtonStyle}" 
+                        Background="AntiqueWhite" Margin="0 5 5 5"
+                        Click="DirectoryButton_Click">
+
+                    <TextBlock Style="{StaticResource TextStyle}" 
+                               Width="59" Padding="4 25" Text="&#128448;"/>
+
+                </Button>
+
+                <StackPanel Orientation="Vertical">
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button x:Name="OnTopButton" 
+                                Style="{StaticResource ButtonStyle}" 
+                                Click="OnTopButton_Click">
+
+                            <TextBlock x:Name="OnTopButtonText" 
+                                       Style="{StaticResource TextStyle}" 
+                                       FontFamily="Segoe MDL2 Assets" 
+                                       Text="&#xE141;"/>
+
+                        </Button>
+
+                        <Button x:Name="MinimizeButton" 
+                                Style="{StaticResource ButtonStyle}" 
+                                Click="MinimizeButton_Click">
+
+                            <TextBlock Style="{StaticResource TextStyle}" 
+                                       FontFamily="Segoe UI" 
+                                       Text="&#128469;&#xFE0E;"/>
+
+                        </Button>
+
+                        <Button x:Name="MaximizeButton" 
+                                Style="{StaticResource ButtonStyle}"
+                                Click="MaximizeButton_Click">
+
+                            <TextBlock x:Name="MaximizeButtonText" 
+                                       Style="{StaticResource TextStyle}" 
+                                       FontFamily="Segoe MDL2 Assets" 
+                                       Text="&#xE1D9;"/>
+
+                        </Button>
+
+                        <Button x:Name="ExitButton" 
+                                Style="{StaticResource ButtonStyle}" 
+                                Click="ExitButton_Click">
+
+                            <TextBlock Style="{StaticResource TextStyle}" 
+                                       FontFamily="Segoe MDL2 Assets" 
+                                       Text="&#xE106;"/>
+
+                        </Button>
+
+                    </StackPanel>
+
+                    <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+
+                        <Button x:Name="ImageOriginalModeButton"
+                                Style="{StaticResource ButtonStyle}" 
+                                Click="ImageOriginalModeButton_Click">
+
+                            <TextBlock Style="{StaticResource TextStyle}" Text="O"/>
+
+                        </Button>
+
+                        <Button x:Name="ImageStrechModeButton"
+                                Style="{StaticResource ButtonStyle}" 
+                                Click="ImageStretchModeButton_Click">
+
+                            <TextBlock Style="{StaticResource TextStyle}" Text="S"/>
+
+                        </Button>
+
+                        <Button x:Name="ImageFitModeButton" 
+                                Style="{StaticResource ButtonStyle}" 
+                                Click="ImageFitModeButton_Click">
+
+                            <TextBlock Style="{StaticResource TextStyle}" Text="F"/>
+
+                        </Button>
+
+                        <Button x:Name="ImageCoverModeButton" 
+                                Style="{StaticResource ButtonStyle}" 
+                                Click="ImageCoverModeButton_Click">
+
+                            <TextBlock Style="{StaticResource TextStyle}" Text="C"/>
+
+                        </Button>
+
+                    </StackPanel>
+
+                </StackPanel>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <Button x:Name="ImageHorizontalLeftAlignmentButton" 
+                        Style="{StaticResource ButtonStyle}" 
+                        Click="ImageHorizontalLeftAlignmentButton_Click">
+
+                    <TextBlock Style="{StaticResource TextStyle}" 
+                               FontFamily="Segoe MDL2 Assets" 
+                               Text="&#xE1A2;"/>
+
+                </Button>
+
+                <Button x:Name="ImageHorizontalCenterAlignmentButton" 
+                        Style="{StaticResource ButtonStyle}" 
+                        Click="ImageHorizontalCenterAlignmentButton_Click">
+
+                    <TextBlock Style="{StaticResource TextStyle}" 
+                               FontFamily="Segoe MDL2 Assets" 
+                               Text="&#xE1A1;"/>
+
+                </Button>
+
+                <Button x:Name="ImageHorizontalRightAlignmentButton" 
+                        Style="{StaticResource ButtonStyle}" 
+                        Click="ImageHorizontalRightAlignmentButton_Click">
+
+                    <TextBlock Style="{StaticResource TextStyle}"
+                               FontFamily="Segoe MDL2 Assets" 
+                               Text="&#xE1A0;"/>
+
+                </Button>
+
+                <Button x:Name="ImageVerticalTopAlignmentButton" 
+                        Style="{StaticResource ButtonStyle}" 
+                        Click="ImageVerticalTopAlignmentButton_Click">
+
+                    <TextBlock Style="{StaticResource TextStyle}" Text="&#8593;"/>
+
+                </Button>
+
+                <Button x:Name="ImageVerticalCenterAlignmentButton" 
+                        Style="{StaticResource ButtonStyle}" 
+                        Click="ImageVerticalCenterAlignmentButton_Click">
+
+                    <TextBlock Style="{StaticResource TextStyle}" Text="&#8645;"/>
+
+                </Button>
+
+                <Button x:Name="ImageVerticalBottomAlignmentButton" 
+                        Style="{StaticResource ButtonStyle}" 
+                        Click="ImageVerticalBottomAlignmentButton_Click">
+
+                    <TextBlock Style="{StaticResource TextStyle}" Text="&#8595;"/>
+
+                </Button>
+
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+
+                <StackPanel Height="30">
+
+                    <Button x:Name="IntervalIncreaseButton" 
+                            Style="{StaticResource ButtonStyle}" Margin="3 1 1 0"
+                            Width="14" Height="14"
+                            Click="IntervalIncreaseButton_Click">
+
+                        <TextBlock Style="{StaticResource TextStyle}" Text="+"/>
+
+                    </Button>
+
+                    <Button x:Name="IntervalDecreaseButton" 
+                            Style="{StaticResource ButtonStyle}" Margin="3 0 1 0"
+                            Width="14" Height="14"
+                            Click="IntervalDecreaseButton_Click">
+
+                        <TextBlock Style="{StaticResource TextStyle}" Text="-"/>
+
+                    </Button>
+
+                </StackPanel>
+                
+                <TextBlock x:Name="IntervalText" Style="{StaticResource TextStyle}" 
+                           Margin="0 5 2 5" Width="50" 
+                           Text="{Binding ElementName=IntervalSlider, Path=Value, StringFormat=N0, UpdateSourceTrigger=PropertyChanged}">
+
+                    <TextBlock.Effect>
+                        <DropShadowEffect ShadowDepth="2" 
+                                          BlurRadius="2" Direction="290"
+                                          Color="#00FF99" Opacity="0.8"/>
+                    </TextBlock.Effect>
+
+                </TextBlock>
+
+                <Slider x:Name="IntervalSlider"
+                            Minimum="2" Maximum="600" Value="10"
+                            Width="140" Margin="0 9 0 0"
+                            ValueChanged="IntervalSliderValueChanged"/>
+
+            </StackPanel>
+
+        </StackPanel>
+
+        <TextBlock x:Name="HomeText" Style="{StaticResource TextStyle}" 
+                   VerticalAlignment="Bottom" Text="-- No Images Loaded --"/>
+
+    </Grid>
+
+</Window>
+
