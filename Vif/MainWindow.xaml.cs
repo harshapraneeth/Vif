@@ -122,8 +122,6 @@ namespace Vif
                 SolidColorBrush.OpacityProperty,
                 windowFadeIn
             );
-
-            Controls.Visibility = Visibility.Visible;
         }
 
         private void MainWindow_MouseLeave(object sender, System.Windows.Input.MouseEventArgs e)
@@ -134,8 +132,6 @@ namespace Vif
                     SolidColorBrush.OpacityProperty,
                     windowFadeOut
                 );
-
-                Controls.Visibility = Visibility.Collapsed;
             }
         }
 
@@ -145,12 +141,21 @@ namespace Vif
             {
                 DragMove();
             }
+
+            else if(e.ChangedButton == MouseButton.Right)
+            {
+                Controls.Visibility = (
+                    Controls.Visibility == Visibility.Visible ?
+                    Visibility.Collapsed : Visibility.Visible
+                );
+            }
         }
 
         private void SwitchToHomeScreen()
         {
             HomeText.Visibility = Visibility.Visible;
             CurrentImage.Visibility = Visibility.Collapsed;
+            Controls.Visibility = Visibility.Visible;
 
             imageSwitchTimer.Stop();
         }
@@ -159,13 +164,12 @@ namespace Vif
         {
             HomeText.Visibility = Visibility.Collapsed;
             CurrentImage.Visibility = Visibility.Visible;
+            Controls.Visibility = Visibility.Collapsed;
 
             BackgroundBrush.BeginAnimation(
                 SolidColorBrush.OpacityProperty,
                 windowFadeOut
             );
-
-            Controls.Visibility = Visibility.Collapsed;
 
             imageSwitchTimer.Start();
         }
